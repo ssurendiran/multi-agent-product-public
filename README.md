@@ -3,7 +3,7 @@
 > **Production-grade multi-agent system** demonstrating the evolution from Hybrid RAG to Agentic RAG and Multi-Agent orchestration for e-commerce product intelligence.
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
-[![Architecture](docs/architecture.md)](docs/architecture.md)
+[Architecture](docs/architecture.md)
 
 ## 🎯 60-Second Overview
 
