@@ -1,5 +1,8 @@
-# Multi-Agent Product Intelligence Platform
 # ⚠️The full production implementation is maintained in an another private repository.
+
+
+# Multi-Agent Product Intelligence Platform
+
 
 This public repository provides architecture, contracts, and a mock-mode demo to demonstrate engineering depth without exposing proprietary code.
 
