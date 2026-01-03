@@ -20,6 +20,14 @@ This platform processes complex user queries through **intelligent multi-agent o
 
 ## 🏛️ System Architecture
 
+### High-Level Architecture Diagram
+
+![High-Level Architecture Diagram](documentation/High_level.drawio.png)
+
+*Complete system architecture showing all layers from user interface through orchestration, agents, data stores, and external services (LLM providers, observability, CI/CD).*
+
+### Architecture Flow Diagram
+
 ```mermaid
 flowchart TD
     subgraph Public["🌐 Public Entry"]
