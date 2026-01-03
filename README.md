@@ -366,6 +366,7 @@ See [SECURITY.md](SECURITY.md) for security policies and reporting procedures.
 For questions, feedback, or collaboration opportunities:
 - Open an issue in this repository
 - Contact via GitHub profile or repository issues
+- Email - contact@surendiran.ai
 
 ---
 
