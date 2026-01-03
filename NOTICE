@@ -1,0 +1,27 @@
+Multi-Agent Product Intelligence Platform
+Copyright 2025 [Update with your name or organization]
+
+This product includes software developed by various open-source projects.
+
+This is a public portfolio repository demonstrating architecture, contracts, and mock-mode implementation.
+The full production implementation is maintained in a private repository.
+
+Third-Party Components:
+
+- FastAPI (https://fastapi.tiangolo.com/) - MIT License
+- LangGraph (https://github.com/langchain-ai/langgraph) - MIT License
+- LangChain (https://github.com/langchain-ai/langchain) - MIT License
+- LiteLLM (https://github.com/BerriAI/litellm) - MIT License
+- Qdrant (https://github.com/qdrant/qdrant) - Apache 2.0 License
+- PostgreSQL (https://www.postgresql.org/) - PostgreSQL License
+- Streamlit (https://streamlit.io/) - Apache 2.0 License
+- Pydantic (https://pydantic.dev/) - MIT License
+- Instructor (https://github.com/jxnl/instructor) - MIT License
+- OpenAI (https://openai.com/) - Proprietary API
+- Groq (https://groq.com/) - Proprietary API
+- Caddy (https://caddyserver.com/) - Apache 2.0 License
+- Docker (https://www.docker.com/) - Apache 2.0 License
+- LangSmith (https://smith.langchain.com/) - Proprietary Service
+
+For full license information, see LICENSE file.
+

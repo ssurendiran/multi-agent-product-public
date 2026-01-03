@@ -1,0 +1,52 @@
+{
+  "request_id": "req-ghi789",
+  "answer": "I've completed your multi-step request:\n\n**Step 1: Product Analysis**\nI analyzed user reviews for durability and found:\n- **iPhone Charger**: B0BYYLJRHT - Highly rated for durability (4.5/5 stars, 89% positive reviews mention durability)\n- **Waterproof Speaker**: B0C69MM2TP - Excellent durability ratings (4.7/5 stars, 92% positive reviews mention durability)\n\n**Step 2: Added to Cart**\nI've added both items to your shopping cart:\n1. iPhone Fast Charger (10 FT Long) - $17.99\n2. Waterproof Bluetooth Speaker - $89.99\n\n**Step 3: Warehouse Reservation**\nI've reserved both items at the Berlin Distribution Center (DE-BER-01). Your items will be ready for pickup within 24 hours.\n\n**Cart Summary:**\n- Total Items: 2\n- Total Price: $107.98\n\nIs there anything else you'd like me to help you with?",
+  "used_context": [
+    {
+      "image_url": "https://example.com/images/iphone-charger.jpg",
+      "price": 17.99,
+      "description": "iPhone Fast Charger (10 FT Long, 2 Pack with 20W PD USB C Wall Charger) - Durable Nylon Braided Cable"
+    },
+    {
+      "image_url": "https://example.com/images/waterproof-speaker.jpg",
+      "price": 89.99,
+      "description": "Waterproof Bluetooth Speaker with 360° Sound, 20-Hour Battery, IPX7 Waterproof Rating, Rugged Design"
+    }
+  ],
+  "cart_state": {
+    "user_id": "user-123",
+    "shopping_cart_id": "main",
+    "items": [
+      {
+        "product_id": "B0BYYLJRHT",
+        "price": 17.99,
+        "quantity": 1,
+        "product_image_url": "https://example.com/images/iphone-charger.jpg"
+      },
+      {
+        "product_id": "B0C69MM2TP",
+        "price": 89.99,
+        "quantity": 1,
+        "product_image_url": "https://example.com/images/waterproof-speaker.jpg"
+      }
+    ],
+    "total_items": 2,
+    "total_price": 107.98
+  },
+  "warehouse_reservation": {
+    "reservation_id": "res-xyz123",
+    "warehouse_id": "DE-BER-01",
+    "items": [
+      {
+        "product_id": "B0BYYLJRHT",
+        "quantity": 1
+      },
+      {
+        "product_id": "B0C69MM2TP",
+        "quantity": 1
+      }
+    ],
+    "ready_by": "2025-01-15T10:00:00Z"
+  }
+}
+

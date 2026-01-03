@@ -1,0 +1,22 @@
+{
+  "request_id": "req-abc123",
+  "answer": "Based on your query, here are some excellent earphone options:\n\n1. **Wireless Bluetooth Earbuds** - These offer freedom of movement and are great for workouts or commuting. They typically feature noise cancellation and long battery life.\n\n2. **Wired Earbuds** - If you prefer reliable connectivity and don't want to worry about battery life, wired options are available with excellent sound quality.\n\n3. **Over-Ear Headphones** - For the best sound quality and comfort during long listening sessions, over-ear headphones provide superior audio experience.\n\nWould you like me to show you specific products with reviews and prices?",
+  "used_context": [
+    {
+      "image_url": "https://example.com/images/wireless-earbuds.jpg",
+      "price": 79.99,
+      "description": "Wireless Bluetooth Earbuds with Active Noise Cancellation, 30-hour battery life, IPX7 waterproof rating"
+    },
+    {
+      "image_url": "https://example.com/images/wired-earbuds.jpg",
+      "price": 29.99,
+      "description": "Wired Earbuds with High-Fidelity Sound, In-Line Microphone, Multiple Ear Tip Sizes"
+    },
+    {
+      "image_url": "https://example.com/images/over-ear-headphones.jpg",
+      "price": 149.99,
+      "description": "Over-Ear Headphones with Premium Sound Quality, Comfortable Memory Foam Ear Pads, 40mm Drivers"
+    }
+  ]
+}
+

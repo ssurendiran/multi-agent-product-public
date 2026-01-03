@@ -1,0 +1,293 @@
+openapi: 3.0.3
+info:
+  title: Multi-Agent Product Intelligence Platform API
+  description: |
+    Production-grade multi-agent system API for e-commerce product intelligence.
+    
+    This API processes complex user queries through intelligent orchestration,
+    delivering accurate, context-aware responses while managing multi-step workflows
+    (product Q&A, shopping cart operations, warehouse reservations).
+    
+    **Note**: This is a public API specification. The full implementation is maintained
+    in a private repository.
+  version: 1.0.0
+  contact:
+    name: API Support
+    # Update [your-org] below with your GitHub organization or username
+    url: https://github.com/[your-org]/ai-assistant-ecosystem
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+
+servers:
+  - url: https://api.surendiran.ai
+    description: Production server
+  - url: http://localhost:8000
+    description: Local development server
+
+tags:
+  - name: rag
+    description: RAG endpoint for agent queries
+  - name: feedback
+    description: User feedback submission
+
+paths:
+  /rag:
+    post:
+      tags:
+        - rag
+      summary: Main RAG endpoint for agent queries
+      description: |
+        Processes user queries through the multi-agent system and returns streaming responses.
+        
+        The system uses a coordinator-based routing system that delegates to specialized agents:
+        - Product QA Agent: Handles product queries and recommendations
+        - Shopping Cart Agent: Manages cart operations
+        - Warehouse Manager Agent: Handles inventory and reservations
+        
+        Responses are streamed via Server-Sent Events (SSE) in real-time.
+      operationId: rag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentRequest'
+            examples:
+              product_query:
+                summary: Product query example
+                value:
+                  query: "What kind of earphones can I get?"
+                  thread_id: "user-123-session-456"
+              cart_operation:
+                summary: Cart operation example
+                value:
+                  query: "Add the most durable iPhone charger to my cart"
+                  thread_id: "user-123-session-456"
+      responses:
+        '200':
+          description: Streaming response (Server-Sent Events)
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                streaming_response:
+                  summary: SSE stream example
+                  value: |
+                    data: {"request_id":"req-abc123","answer":"Based on your query...","used_context":[...]}
+                    
+      x-code-samples:
+        - lang: curl
+          source: |
+            curl -X POST "https://api.surendiran.ai/rag" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "query": "What kind of earphones can I get?",
+                "thread_id": "user-123-session-456"
+              }'
+
+  /submit_feedback:
+    post:
+      tags:
+        - feedback
+      summary: Submit user feedback for agent responses
+      description: |
+        Allows users to submit feedback on agent responses, which is integrated
+        with LangSmith tracing for quality improvement.
+      operationId: submit_feedback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedbackRequest'
+            examples:
+              positive_feedback:
+                summary: Positive feedback example
+                value:
+                  feedback_score: 1
+                  feedback_text: "Great recommendations!"
+                  trace_id: "trace-xyz789"
+                  thread_id: "user-123-session-456"
+                  feedback_source_type: "Human"
+              negative_feedback:
+                summary: Negative feedback example
+                value:
+                  feedback_score: 0
+                  feedback_text: "The answer was not detailed enough"
+                  trace_id: "trace-xyz789"
+                  thread_id: "user-123-session-456"
+                  feedback_source_type: "Human"
+      responses:
+        '200':
+          description: Feedback submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedbackResponse'
+              examples:
+                success:
+                  summary: Success response
+                  value:
+                    request_id: "req-def456"
+                    status: "success"
+        '400':
+          description: Bad request (invalid input)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      x-code-samples:
+        - lang: curl
+          source: |
+            curl -X POST "https://api.surendiran.ai/submit_feedback" \
+              -H "Content-Type: application/json" \
+              -d '{
+                "feedback_score": 1,
+                "feedback_text": "Great recommendations!",
+                "trace_id": "trace-xyz789",
+                "thread_id": "user-123-session-456",
+                "feedback_source_type": "Human"
+              }'
+
+components:
+  schemas:
+    AgentRequest:
+      type: object
+      required:
+        - query
+        - thread_id
+      properties:
+        query:
+          type: string
+          description: The user query to be processed by the agent system
+          example: "What kind of earphones can I get?"
+        thread_id:
+          type: string
+          description: Unique thread identifier for conversation continuity
+          example: "user-123-session-456"
+      additionalProperties: false
+
+    AgentResponse:
+      type: object
+      required:
+        - request_id
+        - answer
+        - used_context
+      properties:
+        request_id:
+          type: string
+          description: Unique request identifier
+          example: "req-abc123"
+        answer:
+          type: string
+          description: The agent's answer to the query
+          example: "Based on your query, here are some excellent earphone options..."
+        used_context:
+          type: array
+          description: Information about items used to answer the query
+          items:
+            $ref: '#/components/schemas/RAGUsedContext'
+      additionalProperties: false
+
+    RAGUsedContext:
+      type: object
+      required:
+        - image_url
+        - description
+      properties:
+        image_url:
+          type: string
+          format: uri
+          description: The image URL of the item
+          example: "https://example.com/product.jpg"
+        price:
+          type: number
+          format: float
+          description: The price of the item
+          example: 29.99
+        description:
+          type: string
+          description: The description of the item
+          example: "Wireless Bluetooth Earbuds with Noise Cancellation"
+      additionalProperties: false
+
+    FeedbackRequest:
+      type: object
+      required:
+        - feedback_score
+        - feedback_text
+        - trace_id
+        - thread_id
+        - feedback_source_type
+      properties:
+        feedback_score:
+          type: integer
+          nullable: true
+          description: 1 if positive feedback, 0 if negative feedback, null if neutral
+          enum: [0, 1, null]
+          example: 1
+        feedback_text:
+          type: string
+          description: The feedback text from the user
+          example: "Great recommendations!"
+        trace_id:
+          type: string
+          description: The trace ID from the agent execution (links feedback to trace)
+          example: "trace-xyz789"
+        thread_id:
+          type: string
+          description: The thread ID for the conversation
+          example: "user-123-session-456"
+        feedback_source_type:
+          type: string
+          enum: [Human, API]
+          description: The source of the feedback (Human or API)
+          example: "Human"
+      additionalProperties: false
+
+    FeedbackResponse:
+      type: object
+      required:
+        - request_id
+        - status
+      properties:
+        request_id:
+          type: string
+          description: Unique request identifier
+          example: "req-def456"
+        status:
+          type: string
+          description: The status of the feedback submission
+          example: "success"
+      additionalProperties: false
+
+    Error:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error type
+          example: "ValidationError"
+        message:
+          type: string
+          description: Error message
+          example: "Invalid input: query is required"
+      additionalProperties: false
+
+  securitySchemes:
+    # Currently no authentication required
+    # Future: OAuth2, JWT, API Key
+    # ApiKeyAuth:
+    #   type: apiKey
+    #   in: header
+    #   name: X-API-Key
+
+# security:
+#   - ApiKeyAuth: []
+

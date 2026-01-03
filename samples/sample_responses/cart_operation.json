@@ -1,0 +1,26 @@
+{
+  "request_id": "req-def456",
+  "answer": "I've analyzed user reviews for durability and found the most durable iPhone charger. I've added the **iPhone Fast Charger (10 FT Long, 2 Pack with 20W PD USB C Wall Charger)** to your shopping cart.\n\n**Product Details:**\n- Product ID: B0BYYLJRHT\n- Price: $17.99\n- Quantity: 1\n\nThis charger received excellent durability ratings from users, with many reviewers noting it lasted significantly longer than other options. The 10-foot cable length also provides added convenience.\n\nYour cart now contains 1 item. Would you like to add anything else?",
+  "used_context": [
+    {
+      "image_url": "https://example.com/images/iphone-charger.jpg",
+      "price": 17.99,
+      "description": "iPhone Fast Charger (10 FT Long, 2 Pack with 20W PD USB C Wall Charger) - Durable Nylon Braided Cable"
+    }
+  ],
+  "cart_state": {
+    "user_id": "user-123",
+    "shopping_cart_id": "main",
+    "items": [
+      {
+        "product_id": "B0BYYLJRHT",
+        "price": 17.99,
+        "quantity": 1,
+        "product_image_url": "https://example.com/images/iphone-charger.jpg"
+      }
+    ],
+    "total_items": 1,
+    "total_price": 17.99
+  }
+}
+
