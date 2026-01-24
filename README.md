@@ -370,5 +370,15 @@ For questions, feedback, or collaboration opportunities:
 
 ---
 
-**Built with**: Python, FastAPI, LangGraph, LangChain, LiteLLM, Qdrant, PostgreSQL, Streamlit, Docker, Caddy, GCP
+**Built with**: GenAI
+RAG
+LangGraph
+Multi-Agent
+LLMOps
+AI Platform
+Vector Database
+pgvector / Qdrant
+FastAPI
+Kubernetes
+Observability
 
